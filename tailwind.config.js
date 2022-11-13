@@ -23,6 +23,8 @@ module.exports = {
     extend: {
       backgroundImage: {
         'hero': "url('/src/assets/images/bg.png')",
+        'appointment': "url('/src/assets/images/appointment.png')",
+        'footer'  : "url('/src/assets/images/footer.png')"
       },
     
     },
