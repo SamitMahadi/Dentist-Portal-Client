@@ -4,27 +4,26 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className=" p-10 bg-footer bg-fit bg-cover ">
-            <div className='footer'>
+        <footer className=" p-10 bg-footer   bg-cover ">
+            <div className='footer mx-16'>
                 <div>
-                    <span className="footer-title">Services</span>
-                    <Link to='/' className="link link-hover">Branding</Link>
-                    <Link to='/' className="link link-hover">Design</Link>
-                    <Link to='/' className="link link-hover">Marketing</Link>
-                    <Link to='/' className="link link-hover">Advertisement</Link>
+                    <span className="footer-title text-black">Services</span>
+                    <Link to='/' className="link link-hover">Emergency Checkup</Link>
+                    <Link to='/' className="link link-hover">Monthly Checkup</Link>
+                    <Link to='/' className="link link-hover">Weekly Checkup</Link>
+                    <Link to='/' className="link link-hover">Deep Checkup</Link>
                 </div>
                 <div>
-                    <span className="footer-title">Company</span>
-                    <Link to='/' className="link link-hover">About us</Link>
-                    <Link to='/' className="link link-hover">Contact</Link>
-                    <Link to='/' className="link link-hover">Jobs</Link>
-                    <Link to='/' className="link link-hover">Press kit</Link>
+                    <span className="footer-title text-black">ORAL HEALTH</span>
+                    <Link to='/' className="link link-hover">Fluoride Treatment</Link>
+                    <Link to='/' className="link link-hover">Cavity Filling</Link>
+                    <Link to='/' className="link link-hover">Teath Whitening</Link>
+                   
                 </div>
                 <div>
-                    <span className="footer-title">Legal</span>
-                    <Link to='/' className="link link-hover">Terms of use</Link>
-                    <Link to='/' className="link link-hover">Privacy policy</Link>
-                    <Link to='/' className="link link-hover">Cookie policy</Link>
+                    <span className="footer-title text-black">OUR ADDRESS</span>
+                    <Link to='/' className="link link-hover">New York - 101010 Hudson</Link>
+                    
                 </div>
             </div>
             <footer className="footer footer-center p-4 mt-8 text-base-content">
