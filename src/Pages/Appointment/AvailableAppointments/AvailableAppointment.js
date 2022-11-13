@@ -3,9 +3,9 @@ import React from 'react';
 
 const AvailableAppointment = ({selectedDate}) => {
     return (
-        <div>
+        <section>
             <p className='text-center text-secondary text-xl  font-bold'>Available Appointments on {format(selectedDate,'PP')}</p>
-        </div>
+        </section>
     );
 };
 

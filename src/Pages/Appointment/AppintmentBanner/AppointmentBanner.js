@@ -7,7 +7,7 @@ const AppointmentBanner = ({selectedDate,setSelectedDate}) => {
    
     return (
         <header className='my-6 bg-hero bg-cover'>
-            <div className="hero py-32">
+            <div className="hero py-20">
                 <div className="hero-content flex-col lg:flex-row-reverse">
                     <img src={chair} alt='' className="lg:w-1/2 rounded-lg shadow-2xl ml-6" />
                     <div className='mr-6'>
@@ -17,7 +17,6 @@ const AppointmentBanner = ({selectedDate,setSelectedDate}) => {
                         selected={selectedDate}
                         onSelect={setSelectedDate}
                         />
-                        <p className='text-primary text-xl'>You Have Selected :{format(selectedDate,'PP')}</p>
                         
                     </div>
                     
