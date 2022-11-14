@@ -9,7 +9,7 @@ const AppointmentBanner = ({selectedDate,setSelectedDate}) => {
         <header className='my-6 bg-hero bg-cover'>
             <div className="hero py-20">
                 <div className="hero-content flex-col lg:flex-row-reverse">
-                    <img src={chair} alt='' className="lg:w-1/2 rounded-lg shadow-2xl ml-6" />
+                    <img src={chair} alt='' className="lg:w-1/2 rounded-lg shadow-2xl " />
                     <div className='mr-6'>
                         <DayPicker
                         className='bg-white rounded-lg shadow-xl p-2 '
