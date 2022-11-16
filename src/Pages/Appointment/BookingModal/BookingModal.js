@@ -1,29 +1,50 @@
-import { format } from 'date-fns';
-import React from 'react';
 
-const BookingModal = ({ treatment, selectedDate }) => {
-    const { name, slots } = treatment
+import { format } from 'date-fns';
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+
+import { AuthContext } from '../../../Contexts/AuthProvider';
+
+const BookingModal = ({ treatment,setTreatment,selectedDate, }) => {
+    const { name, slots } = treatment;
     const date = format(selectedDate, 'PP')
-    const handleBooking=event=>{
+    const { user } = useContext(AuthContext)
+
+
+
+    const handleBooking = event => {
         event.preventDefault();
-        const form  = event.target;
-        const name =form.name.value;
+        const form = event.target;
+        const name = form.name.value;
         const slot = form.slot.value;
         const phone = form.phone.value;
-        const email  = form.email.value;
-        console.log(date,slot,name,email,phone);
-        const booking={
-            selectedDate:date,
-            treatment:name,
-            patient:name,
-            name,
+        const email = form.email.value;
+        
+        const booking = {
+            appointmentDate: date,
+            treatment: name,
+            patient: name,
             slot,
             email,
             phone,
 
         }
-        console.log(booking);
+        fetch('http://localhost:5000/bookings', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(booking)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    setTreatment(null)
+                    toast.success('Booking Confirmed')
+                }
 
+            })
     }
     return (
         <>
@@ -36,15 +57,15 @@ const BookingModal = ({ treatment, selectedDate }) => {
                         <input type="text" disabled value={date} className="input input-bordered w-full" />
                         <select name='slot' className="select select-bordered w-full">
                             {
-                                slots.map((slot,i)=> <option
-                                 value={slot}
-                                 key={i}
-                                 >{slot}</option>)
+                                slots.map((slot, i) => <option
+                                    value={slot}
+                                    key={i}
+                                >{slot}</option>)
                             }
                         </select>
-                        <input type="text" name='name' placeholder="Full Name" className="input input-bordered w-full" />
+                        <input type="text" name='name' defaultValue={user?.displayName} readOnly placeholder="Full Name" className="input input-bordered w-full" />
                         <input type="text" name='phone' placeholder="Phone Numer" className="input input-bordered w-full" />
-                        <input type="text" name='email' placeholder="Email Adress" className="input input-bordered w-full" />
+                        <input type="text" name='email' defaultValue={user?.email} disabled readOnly placeholder="Email Adress" className="input input-bordered w-full" />
                         <button className="btn btn-accent w-full text-white" type='submit' value='submit'>Submit</button>
                     </form>
                 </div>
