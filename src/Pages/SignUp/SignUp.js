@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { json, Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
 
 
@@ -26,7 +26,7 @@ const SignUp = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        navigate('/')
+                        saveUser(data.name,data.email)
                     })
                     .catch(err => console.error(err))
             })
@@ -35,6 +35,24 @@ const SignUp = () => {
                 setSignUpError(error.message)
             })
     }
+
+
+const saveUser=(name,email)=>{
+    const user ={name,email}
+    fetch('http://localhost:5000/users',{
+        method: 'POST',
+        headers: {
+            'content-type':'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+        console.log('save user', data);
+        navigate('/')
+    })
+}
+
     return (
         <div>
             <div className='h-[800px] flex justify-center items-center'>
