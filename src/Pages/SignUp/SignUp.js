@@ -1,15 +1,18 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { json, Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useTitle from '../../Hooks/useTitle';
 import useToken from '../../Hooks/useToken';
 
 
 const SignUp = () => {
+    useTitle('signup')
     const { register, handleSubmit, formState: { errors } } = useForm()
 
-    const { createUser, updateUser } = useContext(AuthContext)
+    const { createUser, updateUser,providerLogin } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('');
     const [createdUserEmail, setCreatedUserEmail] = useState('')
     const [token] = useToken(createdUserEmail)
@@ -17,6 +20,16 @@ const SignUp = () => {
 
     if(token){
         navigate('/')
+    }
+
+    const googleProvider = new GoogleAuthProvider()
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(err => console.error(err))
     }
 
 
@@ -46,7 +59,7 @@ const SignUp = () => {
 
     const saveUser = (name, email) => {
         const user = { name, email }
-        fetch('http://localhost:5000/users', {
+        fetch('https://dentist-portal-server-nine.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -107,7 +120,7 @@ const SignUp = () => {
                     </form>
                     <p className='mt-3'>Already Have An Account? <Link className='text-primary' to='/login'>Login Now</Link> </p>
                     <div className="divider">OR</div>
-                    <button className="btn btn-outline w-full font-uppercase hover:text-primary">continue with google</button>
+                    <button onClick={handleGoogleSignIn}  className="btn btn-outline w-full font-uppercase hover:text-primary">continue with google</button>
                 </div>
 
             </div>

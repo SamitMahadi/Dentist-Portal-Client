@@ -1,14 +1,17 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import { Result } from 'postcss';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import useTitle from '../../Hooks/useTitle';
 import useToken from '../../Hooks/useToken'
 
 
 const Login = () => {
+    useTitle('Login')
     const { register, formState: { errors }, handleSubmit } = useForm()
-    const { signIn } = useContext(AuthContext);
+    const { signIn,providerLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('')
     const [loginUserEmail, setLoginUserEmail] = useState('');
     const [token] = useToken(loginUserEmail)
@@ -19,6 +22,17 @@ const Login = () => {
 
     if (token) {
         navigate(from, { replace: true })
+    }
+    const googleProvider = new GoogleAuthProvider()
+
+
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+        .then(result=>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(err=>console.error(err))
     }
 
     const handleLogin = data => {
@@ -76,7 +90,7 @@ const Login = () => {
                 </form>
                 <p className='mt-3'>New to Dentist portal? <Link className='text-primary' to='/signup'>Create New Account</Link> </p>
                 <div className="divider">OR</div>
-                <button className="btn btn-outline w-full font-uppercase hover:text-primary">continue with google</button>
+                <button onClick={handleGoogleSignIn} className="btn btn-outline w-full font-uppercase hover:text-primary">continue with google</button>
             </div>
 
         </div>

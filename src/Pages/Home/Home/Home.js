@@ -6,8 +6,10 @@ import TermsHome from '../TermsHome/TermsHome';
 import MakeAppointment from '../MakeAppointment/MakeAppointment';
 import Testimonials from '../Testimonials/Testimonials';
 import HomeContact from '../HomeContact/HomeContact';
+import useTitle from '../../../Hooks/useTitle';
 
 const Home = () => {
+    useTitle('Home')
     return (
         <div className='mx-5'>
             <Banner></Banner>

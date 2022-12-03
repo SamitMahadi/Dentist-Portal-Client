@@ -30,7 +30,7 @@ const BookingModal = ({ treatment,setTreatment,selectedDate,refetch }) => {
             price
 
         }
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://dentist-portal-server-nine.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
