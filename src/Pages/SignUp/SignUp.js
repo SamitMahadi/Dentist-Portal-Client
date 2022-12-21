@@ -23,14 +23,14 @@ const SignUp = () => {
     }
 
     const googleProvider = new GoogleAuthProvider()
-    const handleGoogleSignIn = () => {
-        providerLogin(googleProvider)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
-            })
-            .catch(err => console.error(err))
-    }
+    // const handleGoogleSignIn = () => {
+    //     providerLogin(googleProvider)
+    //         .then(result => {
+    //             const user = result.user;
+    //             console.log(user);
+    //         })
+    //         .catch(err => console.error(err))
+    // }
 
 
     const handleSignUp = (data) => {
@@ -120,7 +120,7 @@ const SignUp = () => {
                     </form>
                     <p className='mt-3'>Already Have An Account? <Link className='text-primary' to='/login'>Login Now</Link> </p>
                     <div className="divider">OR</div>
-                    <button onClick={handleGoogleSignIn}  className="btn btn-outline w-full font-uppercase hover:text-primary">continue with google</button>
+                    {/* <button onClick={handleGoogleSignIn}  className="btn btn-outline w-full font-uppercase hover:text-primary">continue with google</button> */}
                 </div>
 
             </div>

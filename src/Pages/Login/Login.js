@@ -26,14 +26,14 @@ const Login = () => {
     const googleProvider = new GoogleAuthProvider()
 
 
-    const handleGoogleSignIn = () => {
-        providerLogin(googleProvider)
-        .then(result=>{
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(err=>console.error(err))
-    }
+    // const handleGoogleSignIn = () => {
+    //     providerLogin(googleProvider)
+    //     .then(result=>{
+    //         const user = result.user;
+    //         console.log(user);
+    //     })
+    //     .catch(err=>console.error(err))
+    // }
 
     const handleLogin = data => {
         console.log(data);
@@ -90,7 +90,7 @@ const Login = () => {
                 </form>
                 <p className='mt-3'>New to Dentist portal? <Link className='text-primary' to='/signup'>Create New Account</Link> </p>
                 <div className="divider">OR</div>
-                <button onClick={handleGoogleSignIn} className="btn btn-outline w-full font-uppercase hover:text-primary">continue with google</button>
+                {/* <button onClick={handleGoogleSignIn} className="btn btn-outline w-full font-uppercase hover:text-primary">continue with google</button> */}
             </div>
 
         </div>
